@@ -1,5 +1,3 @@
-// import React from "react";
-
 const ToDoItem = ({ item, removeToDo, toggleDone }) => {
   return (
     <div className={`todo-item${item.done ? ' done' : ''}`}>

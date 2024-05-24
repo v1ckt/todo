@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 const Filter = ({ filter, setFilter }) => {
   const [isExpanded, setExpanded] = useState(false);
 

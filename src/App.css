@@ -34,7 +34,6 @@ header {
   color: var(--text-color);
   width: 100vw;
   padding: 1rem 2rem;
-  margin-bottom: 1vh;
   text-align: left;
   display: flex;
   align-items: stretch;
@@ -147,11 +146,15 @@ input[type="checkbox"] {
   .title {
     width: 100%;
     text-align: center;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .bottom {
     display: flex;
     flex-direction: row;
+    gap: 1rem;
     width: 100%;
 
     input,
@@ -168,6 +171,7 @@ input[type="text"] {
   font-size: 1rem;
   width: 100%;
   padding: .5rem .8rem;
+  cursor: text;
 }
 
 select {
@@ -233,4 +237,8 @@ select {
 input:hover,
 select:hover {
   background-color: var(--input-hover-color);
+}
+
+input:focus, select:focus {
+  box-shadow: 0 0 0 1px #eee inset;
 }

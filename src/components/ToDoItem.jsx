@@ -1,7 +1,12 @@
 const ToDoItem = ({ item, removeToDo, toggleDone }) => {
   return (
-    <div className={`todo-item${item.done ? ' done' : ''}`}>
-      <input type="checkbox" onClick={() => toggleDone(item.id)}></input>
+    <div className={`todo-item${item.done ? " done" : ""}`}>
+      <input
+        type="checkbox"
+        name={item.id + "checkbox"}
+        checked={item.done}
+        onClick={() => toggleDone(item.id)}
+      ></input>
       <div className="todo-content">
         <p className="todo-text">{item.text}</p>
         <p className="arrow">{">"}</p>

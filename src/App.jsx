@@ -6,11 +6,12 @@ import Filter from "./components/Filter";
 import "./App.css";
 
 function App() {
-  const [ToDos, setTodos] = useState([
-    { id: 0, text: "Learn React", category: "Frontend", done: false },
-    { id: 1, text: "Learn React Native", category: "Mobile", done: false },
-    { id: 2, text: "Learn Node", category: "Backend", done: false },
-  ]);
+  const [ToDos, setTodos] = useState(
+    localStorage.getItem("todos")
+      ? JSON.parse(localStorage.getItem("todos"))
+      : []
+  );
+  console.log(localStorage.getItem("todos").length);
 
   const addToDo = (text, category) => {
     const newToDos = [
@@ -18,6 +19,7 @@ function App() {
       { id: Math.floor(Math.random() * 1000), text, category, done: false },
     ];
     setTodos(newToDos);
+    localStorage.setItem("todos", JSON.stringify(newToDos));
   };
 
   const removeToDo = (id) => {
@@ -26,12 +28,14 @@ function App() {
       todo.id !== id ? todo : null
     );
     setTodos(filteredToDos);
+    localStorage.setItem("todos", JSON.stringify(filteredToDos));
   };
 
   const toggleDone = (id) => {
     const newToDos = [...ToDos];
     newToDos.map((todo) => (todo.id === id ? (todo.done = !todo.done) : todo));
     setTodos(newToDos);
+    localStorage.setItem("todos", JSON.stringify(newToDos));
   };
 
   const [search, setSearch] = useState("");
@@ -71,6 +75,12 @@ function App() {
               toggleDone={toggleDone}
             />
           ))}
+      {localStorage.getItem("todos").length === 2 ? (
+        <div className="no-todos">
+          <h2>It seems that your list is empty.</h2>
+          <p>You can start by clicking on "add task".</p>
+        </div>
+      ) : null}
       </div>
     </div>
   );

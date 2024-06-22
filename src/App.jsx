@@ -11,7 +11,10 @@ function App() {
       ? JSON.parse(localStorage.getItem("todos"))
       : []
   );
-  console.log(localStorage.getItem("todos").length);
+
+  if (localStorage.getItem("todos") === null || localStorage.length === undefined) {
+    localStorage.setItem("todos", JSON.stringify([]));
+  }
 
   const addToDo = (text, category) => {
     const newToDos = [
